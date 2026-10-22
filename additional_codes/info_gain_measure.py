@@ -1,11 +1,20 @@
+# Information Gain Calculation Example
 import math
 
-n = int(input("Enter number of records: "))
-data = []
+try:
+    n = int(input("Enter number of records: "))
+except ValueError:
+    print("Invalid input for number of records.")
+    exit(1)
 
+data = []
 for i in range(n):
-    a, c = input("Enter Attribute Class: ").split()
-    data.append([a, c])
+    try:
+        a, c = input("Enter Attribute Class: ").split()
+        data.append([a, c])
+    except Exception as e:
+        print("Invalid input for record.", e)
+        exit(1)
 
 def entropy(rows):
     total = len(rows)
@@ -17,7 +26,6 @@ def entropy(rows):
 e = entropy(data)
 values = set(r[0] for r in data)
 weighted = 0
-
 for v in values:
     group = [r for r in data if r[0] == v]
     weighted += len(group) / n * entropy(group)
