@@ -1,9 +1,18 @@
-n = int(input("Enter number of sales: "))
+# Data Warehouse Schemas Example
+try:
+    n = int(input("Enter number of sales: "))
+except ValueError:
+    print("Invalid input for number of sales.")
+    exit(1)
 
 sales = []
 for i in range(n):
-    p, c, d, q = input("Enter Product Category Date Quantity: ").split()
-    sales.append([p, c, d, int(q)])
+    try:
+        p, c, d, q = input("Enter Product Category Date Quantity: ").split()
+        sales.append([p, c, d, int(q)])
+    except Exception as e:
+        print("Invalid input for sales record.", e)
+        exit(1)
 
 print("\nStar Schema:")
 print("Fact_Sales:", sales)
@@ -20,10 +29,18 @@ print("Fact_Sales:", sales)
 
 print("\nFact Constellation:")
 returns = []
-m = int(input("Enter number of returns: "))
+try:
+    m = int(input("Enter number of returns: "))
+except ValueError:
+    print("Invalid input for number of returns.")
+    exit(1)
 for i in range(m):
-    p, d, q = input("Enter Product Date Quantity: ").split()
-    returns.append([p, d, int(q)])
+    try:
+        p, d, q = input("Enter Product Date Quantity: ").split()
+        returns.append([p, d, int(q)])
+    except Exception as e:
+        print("Invalid input for returns record.", e)
+        exit(1)
 
 print("Fact_Sales:", sales)
 print("Fact_Returns:", returns)
